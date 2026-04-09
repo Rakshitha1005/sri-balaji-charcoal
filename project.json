@@ -1,0 +1,23 @@
+{
+  "overview": "Sri Balaji Premium Charcoal is a complete e-commerce website for a charcoal supplier with 20+ years of experience. Customers can browse products, add to cart, fill delivery details, and place orders online. The site features a dark, bold design with orange accents and a WhatsApp floating button.",
+  "features": [
+    "Home page with hero banner, product previews, about section, and business stats",
+    "Products page with 5kg and 10kg packs, specifications, and add-to-cart",
+    "Shopping cart with quantity controls and total calculation",
+    "Checkout with delivery form and payment method selection (UPI, card, net banking)",
+    "Contact page with inquiry form",
+    "Location page with address, business hours, and delivery areas",
+    "WhatsApp floating button on all pages",
+    "Footer with quick links and contact info on all pages"
+  ],
+  "category": "e-commerce",
+  "tags": [
+    "charcoal",
+    "ecommerce",
+    "india",
+    "shopping-cart",
+    "checkout",
+    "dark-theme"
+  ],
+  "last_updated": "2026-04-09T07:04:57.188Z"
+}

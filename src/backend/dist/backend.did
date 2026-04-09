@@ -1,0 +1,79 @@
+type Timestamp = int;
+type ProductSpec = 
+ record {
+   specLabel: text;
+   value: text;
+ };
+type ProductId = nat;
+type Product = 
+ record {
+   description: text;
+   id: ProductId;
+   name: text;
+   priceRupees: nat;
+   specs: vec ProductSpec;
+   weightKg: nat;
+ };
+type PaymentMethod = 
+ variant {
+   debitCreditCard;
+   netBanking;
+   upi;
+ };
+type OrderStatus = 
+ variant {
+   confirmed;
+   delivered;
+   dispatched;
+   pending;
+ };
+type OrderItem = 
+ record {
+   priceRupees: nat;
+   productId: ProductId;
+   quantity: nat;
+ };
+type OrderId = nat;
+type Order = 
+ record {
+   createdAt: Timestamp;
+   deliveryDetails: DeliveryDetails;
+   id: OrderId;
+   items: vec OrderItem;
+   paymentMethod: PaymentMethod;
+   status: OrderStatus;
+   totalRupees: nat;
+ };
+type InquiryId = nat;
+type DeliveryDetails = 
+ record {
+   address: text;
+   city: text;
+   fullName: text;
+   phone: text;
+   pincode: text;
+ };
+type CartItem = 
+ record {
+   productId: ProductId;
+   quantity: nat;
+ };
+type Cart = 
+ record {
+   items: vec CartItem;
+   totalRupees: nat;
+ };
+service : {
+  addToCart: (productId: ProductId, quantity: nat) -> (Cart);
+  clearCart: () -> ();
+  getCart: () -> (Cart) query;
+  getOrder: (id: OrderId) -> (opt Order) query;
+  getProduct: (id: ProductId) -> (opt Product) query;
+  listProducts: () -> (vec Product) query;
+  placeOrder: (deliveryDetails: DeliveryDetails, paymentMethod:
+   PaymentMethod) -> (OrderId);
+  removeFromCart: (productId: ProductId) -> (Cart);
+  submitInquiry: (name: text, phone: text, product: text, quantity: text,
+   message: text) -> (InquiryId);
+  updateCartItem: (productId: ProductId, quantity: nat) -> (Cart);
+}

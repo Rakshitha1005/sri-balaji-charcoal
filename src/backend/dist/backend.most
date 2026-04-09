@@ -1,0 +1,83 @@
+// Version: 1.0.0
+type CartItem__1044444615 =
+  {productId : ProductId__593108714; quantity : Nat};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DeliveryDetails__997325729 =
+  {
+    address : Text;
+    city : Text;
+    fullName : Text;
+    phone : Text;
+    pincode : Text
+  };
+type InquiryId__600090858 = Nat;
+type Inquiry__397953515 =
+  {
+    createdAt : Timestamp__306786231;
+    id : InquiryId__600090858;
+    message : Text;
+    name : Text;
+    phone : Text;
+    product : Text;
+    quantity : Text
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OrderId__197865225 = Nat;
+type OrderId__521176343 = OrderId__197865225;
+type OrderItem__241319351 =
+  {priceRupees : Nat; productId : ProductId__593108714; quantity : Nat};
+type OrderStatus__272730104 = {#confirmed; #delivered; #dispatched; #pending};
+type Order__141779993 =
+  {
+    createdAt : Timestamp__813860109;
+    deliveryDetails : DeliveryDetails__997325729;
+    id : OrderId__521176343;
+    items : [OrderItem__241319351];
+    paymentMethod : PaymentMethod__972042942;
+    status : OrderStatus__272730104;
+    totalRupees : Nat
+  };
+type PaymentMethod__972042942 = {#debitCreditCard; #netBanking; #upi};
+type ProductId__442338476 = Nat;
+type ProductId__593108714 = ProductId__442338476;
+type Timestamp__301639476 = Int;
+type Timestamp__306786231 = Timestamp__301639476;
+type Timestamp__813860109 = Timestamp__301639476;
+actor {
+  stable cartStore :
+    {
+      var root : Node__46230540<Principal, [CartItem__1044444615]>;
+      var size : Nat__490723111
+    };
+  stable inquiryStore :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Inquiry__397953515]];
+      var elementIndex : Nat__490723111
+    };
+  stable nextInquiryId :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Nat]];
+      var elementIndex : Nat__490723111
+    };
+  stable nextOrderId :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Nat]];
+      var elementIndex : Nat__490723111
+    };
+  stable orderStore :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Order__141779993]];
+      var elementIndex : Nat__490723111
+    }
+};
